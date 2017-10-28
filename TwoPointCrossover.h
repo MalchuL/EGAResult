@@ -28,6 +28,24 @@ public:
 			throw 1;
 		}
 	}
+
+	ByteVector Crossover(ByteVector firstVector, ByteVector secondVector) {
+		ByteVector result(secondVector.getLen());
+		for (size_t i = 0; i < getFirstPoint(); i++)
+		{
+			result.setByte(i, firstVector.getByte(i));
+		}
+		for (size_t i = getFirstPoint(); i < getSecondPoint(); i++)
+		{
+			result.setByte(i, secondVector.getByte(i));
+		}
+		for (size_t i = getSecondPoint(); i < secondVector.getLen(); i++)
+		{
+			result.setByte(i, firstVector.getByte(i));
+		}
+		return result;
+	}
+
 	TwoPointCrossover(int firstPoint, int secondPoint) {
 		if (firstPoint < secondPoint) {
 			this->firstPoint = firstPoint;

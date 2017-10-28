@@ -8,7 +8,7 @@
 
 int main()
 {
-	testPopulation();
+	testRoulette();
 	getchar();
     return 0;
 }
