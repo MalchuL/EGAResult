@@ -2,10 +2,14 @@
 //
 
 #include "stdafx.h"
-#include <ByteVector.h>
+#include "GeneticAlgorithm.h"
+#include "tests.h"
+
 
 int main()
 {
+	testPopulation();
+	getchar();
     return 0;
 }
 
