@@ -39,11 +39,11 @@ private:
 	function func;
 protected:
 
-
-public:
 	funcvalue CalculateFitness(ByteVector vector) {
 		return func.calculateFitness(vector);
 	}
+public:
+
 	AbstractSelection(function func) :func(func) {};
 	virtual vector<ByteVector> getGoodChilds(vector<ByteVector> allChilds, int size) = 0;
 	~AbstractSelection();

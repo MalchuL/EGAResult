@@ -48,10 +48,12 @@ class GeneticAlgorithm
 		int byteLen = parents.at(0).getLen();
 		RandomObjectsSelector<AbstractCrossover> crossoverGenerator = RandomObjectsSelector<AbstractCrossover>(
 		{ new OnePointCrossover(),
-			new	TwoPointCrossover((rand() % (byteLen / 2)) + 1) });
+			new	TwoPointCrossover((rand() % (byteLen / 2)) + 1),
+			new RandomCrossover()
+		});
 		//Сгенерируем пары родителей
 		vector<BytePair> parentPairs;
-		clog << "parents" << endl;
+		//clog << "parents" << endl;
 		for (size_t i = 0; i < childsSize; i++)
 		{
 			BytePair parentPair = pairParentGenerator.getRandomObject().SelectParents(parents);
@@ -64,9 +66,9 @@ class GeneticAlgorithm
 				child = crossoverGenerator.getRandomObject().Crossover(parentPair.second, parentPair.first);
 			}
 			childs.push_back(child);
-			clog << "p:" << endl;
-			clog << parentPair.first << endl << parentPair.second << endl;
-			clog << "c:"<<endl << child << endl;
+		//	clog << "p:" << endl;
+		//	clog << parentPair.first << endl << parentPair.second << endl;
+		//	clog << "c:"<<endl << child << endl;
 		}
 
 		return childs;
@@ -79,12 +81,12 @@ class GeneticAlgorithm
 		new	InversionMutation(byteLen / 2 + 1),
 			new	ByteInversionMutation(byteLen /	1.5 + 1) });
 		vector<ByteVector> mutants;
-		clog << "mutants" << endl;
+		//clog << "mutants" << endl;
 		for(ByteVector vect:vectors){
-			clog << "n:" << vect << endl;
+		//	clog << "n:" << vect << endl;
 			ByteVector mutant = mutantGenerator.getRandomObject().Mutate(vect);
 			mutants.push_back(mutant);
-			clog << "m:" << mutant << endl;
+		//	clog << "m:" << mutant << endl;
 		}
 		return mutants;
 	}
@@ -102,19 +104,25 @@ class GeneticAlgorithm
 		}
 		return maxVector;
 	}
-
+	bool VectorIsUnique(vector<ByteVector> vectors) {
+		ByteVector checkVector = vectors.at(0);
+		for (ByteVector vector : vectors) {
+			if (vector != checkVector)return true;
+		}
+		return false;
+	}
 	int populationSize;
 	int childsSize;
 	int mutantSize;
 	float nextGenerationOverlapCoef;
 	float cForSelection;
-	const int steps = 10;
+	const int steps;
 public:
-	GeneticAlgorithm(int populationSize):populationSize(populationSize) {
+	GeneticAlgorithm(int populationSize,int maxsteps):populationSize(populationSize),steps(maxsteps) {
 		childsSize = populationSize * 3;
-		mutantSize = childsSize*3;
+		mutantSize = 0.1*childsSize;
 		nextGenerationOverlapCoef = 1.f / 3.f;
-		cForSelection = 0;
+		cForSelection = 2;
 	}
 	ByteVector find(vector<BackpackObject> objectsVector, weightvalue maxWeight) {
 		ObjectVector convertedVector;
@@ -131,8 +139,8 @@ public:
 		//Наша функция приспособленности
 		function funcFitness = function(objectsVector);
 		//Селекция
-		ProportionalSelection selection = ProportionalSelection(funcFitness, cForSelection);
-		NextGenerationGenerator nextGenerationGenerator = NextGenerationGenerator(nextGenerationOverlapCoef, selection);
+		//ProportionalSelection selection = ProportionalSelection(funcFitness, cForSelection);
+		NextGenerationGenerator nextGenerationGenerator = NextGenerationGenerator(nextGenerationOverlapCoef, funcFitness);
 
 		//Сгенерируем начальную популяцию
 		vector<ByteVector> currentPopulation = GenerateStartPopulation(objectsVector, maxWeight);
@@ -141,7 +149,7 @@ public:
 		for (size_t i = 0; i < steps; i++)
 		{
 
-
+			if (!VectorIsUnique(currentPopulation))break;
 			vector<ByteVector> childs = GenerateChilds(currentPopulation);
 			vector<ByteVector> mutants = GenerateMutants(childs);
 			GenotypeModificationLimitationProcessing LimitationProcessor = GenotypeModificationLimitationProcessing(objectsVector, maxWeight);
@@ -159,10 +167,11 @@ public:
 			{
 				mutants[i] = LimitationProcessor.ModifyToAllowed(mutants[i]);
 			}
+			/*
 			clog << "after Childs" << endl;
 			printVectorList(childs, funcFitness);
 			clog << "after Mutants" << endl;
-			printVectorList(mutants, funcFitness);
+			printVectorList(mutants, funcFitness);*/
 			currentPopulation = nextGenerationGenerator.GenerateNextGeneration(currentPopulation, childs, mutants);
 			clog << "Current Population" << endl;
 			printVectorList(currentPopulation, funcFitness);

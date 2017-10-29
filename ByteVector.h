@@ -26,6 +26,9 @@ public:
 	ByteVector operator=(const ByteVector& vect);
 	bool operator<(const ByteVector& other)const;
 	bool operator==(const ByteVector& other)const;
+	bool operator!=(const ByteVector& other)const {
+		return !(*this == other);
+	}
 	~ByteVector();
 	friend ostream& operator<<(ostream& a, const ByteVector&vect);
 };
