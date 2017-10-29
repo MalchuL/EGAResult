@@ -5,6 +5,9 @@
 #include "GeneticPointMutation.h"
 #include "InversionMutation.h"
 #include "Roulette.h"
+#include "OutbridParentSelector.h"
+#include "InbridingParentSelector.h"
+#include "NextGenerationGenerator.h"
 void testPopulation() {
 	ObjectVector vect;
 	for (size_t i = 0; i < 10; i++)
@@ -56,6 +59,49 @@ void testRoulette() {
 	{
 		clog<<i+1<<" "<< counts[i]<<endl;
 	}
+}
+/*void testNextGeneration() {
+	vector<ByteVector> currentGeneration;
+	vector<ByteVector> desc;
+	vector<ByteVector> mutants;
+	for (size_t i = 0; i < 20; i++)
+	{
+		currentGeneration.push_back(ByteVector(0, 6));
+		desc.push_back(ByteVector(0b111111, 6));
+		mutants.push_back(ByteVector(0b101010, 6));
+	}
+	NextGenerationGenerator generator = NextGenerationGenerator(0.5);
+	vector<ByteVector> nextGeneration = generator.GenerateNextGeneration(currentGeneration, desc, mutants);
+	for (size_t i = 0; i < nextGeneration.size(); i++)
+	{
+		clog << nextGeneration.at(i) << endl;
+	}
+
+
+}*/
+void testParentSelector() {
+	vector<ByteVector> vectors;
+	const int len = 6;
+	for (size_t i = 0; i < 1<<len; i++)
+	{
+		vectors.push_back(ByteVector(i,len));
+		vectors.push_back(ByteVector(i, len));
+	}
+	OutbridParentSelector outselector;
+	clog << "outselector" << endl;
+	for (size_t i = 0; i < 20; i++)
+	{
+		BytePair pair = outselector.SelectParents(vectors);
+		clog << pair.first << " " << pair.second << endl;
+	}
+	InbridingParentSelector inselector;
+	clog << "inselector" << endl;
+	for (size_t i = 0; i < 20; i++)
+	{
+		BytePair pair = inselector.SelectParents(vectors);
+		clog << pair.first << " " << pair.second << endl;
+	}
+
 }
 void testCrossover() {
 	ByteVector vector1(0b111000, 6);

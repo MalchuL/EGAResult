@@ -17,13 +17,13 @@ public:
 		{
 			currentProbality += probabilities.at(i);
 			this->probabilities.push_back(currentProbality);
-			clog << this->objects.at(i) << " " << this->probabilities.at(i) << endl;
+		//	clog << this->objects.at(i) << " " << this->probabilities.at(i) << endl;
 		}
 		probalityScale = currentProbality;
 	}
 	T getRandomObject() {
 		float randomValue = abs((float)rand()) / RAND_MAX * probalityScale;
-		clog << randomValue << endl;
+		//clog << randomValue << endl;
 		for (size_t i = 0; i < probabilities.size(); i++)
 		{
 			if (randomValue<probabilities.at(i)) {

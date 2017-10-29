@@ -8,7 +8,7 @@
 
 int main()
 {
-	testRoulette();
+	testNextGeneration();
 	getchar();
     return 0;
 }

@@ -10,33 +10,45 @@ using namespace std;
 typedef std::pair<ByteVector, ByteVector> BytePair;
 class AbstractParentSelector
 {
-public:
-	AbstractParentSelector();
-	BytePair SelectParents(vector<ByteVector> byteVectorList) {
-		if (byteVectorList.size() < 2)throw SetSizeException();
-		random_shuffle(byteVectorList.begin(), byteVectorList.end());
-		ByteVector firstParent(byteVectorList.at(0));
-		ByteVector secondParent = SelectPairToFirstVector(firstParent,byteVectorList);
-		return BytePair(firstParent, secondParent);
+protected:
+	virtual ByteVector SelectFirstParent(const vector<ByteVector>& byteVectorList) {
 
+		return byteVectorList.at(rand() % byteVectorList.size());
 	}
 	virtual float Probability(ByteVector firstParent, ByteVector secondParent) = 0;
-	ByteVector SelectPairToFirstVector(ByteVector firstParent,const vector<ByteVector>& potencialParents) {
+
+	ByteVector SelectPairToFirstVector(ByteVector firstParent, const vector<ByteVector>& potencialParents) {
 		vector<ByteVector> parents;
 		vector<float> probabilities;
-		for(ByteVector vector:potencialParents)
+		//clog << potencialParents.size();
+		for (ByteVector vector : potencialParents)
 		{
 			int length = ByteVectorMath::HemmingLength(firstParent, vector);
+	//		clog << length << endl;
 			if (length > 0) {
+	//			clog << "1" << endl;
 				parents.push_back(vector);
 				probabilities.push_back(Probability(firstParent, vector));
 			}
 		}
+		if (parents.size() == 0)throw 1;
+		//clog << "f";
 		Roulette<ByteVector> roulette = Roulette<ByteVector>(parents, probabilities);
 		ByteVector secondParent = roulette.getRandomObject();
 		return secondParent;
-	
+
 	}
+public:
+	AbstractParentSelector();
+	BytePair SelectParents(vector<ByteVector> byteVectorList) {
+		if (byteVectorList.size() < 2)throw SetSizeException();
+	//	random_shuffle(byteVectorList.begin(), byteVectorList.end());
+		ByteVector firstParent(SelectFirstParent(byteVectorList));
+		ByteVector secondParent = SelectPairToFirstVector(firstParent,byteVectorList);
+		return BytePair(firstParent, secondParent);
+
+	}
+
 	~AbstractParentSelector();
 };
 
