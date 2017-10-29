@@ -28,9 +28,26 @@ public:
 		
 		if (excludeSize < 1)excludeSize = 1;
 		if (excludeSize > generationSize)excludeSize = generationSize;
-		//Исключим случайно некоторые элементы из текущего поколения
-		random_shuffle(nextGeneration.begin(), nextGeneration.end());
-		nextGeneration.erase(nextGeneration.begin(), nextGeneration.begin() + excludeSize);
+		//Исключим самые слабые элементы из текущего поколения
+	//	random_shuffle(nextGeneration.begin(), nextGeneration.end());
+		for (size_t i = 0; i < excludeSize; i++)
+		{
+			int minindex = 0;
+			ByteVector minByte = nextGeneration.at(minindex);
+			funcvalue mincost = selection.CalculateFitness(minByte);
+			
+			for (int index = 0;index < nextGeneration.size();index++) {
+				ByteVector byte = nextGeneration.at(index);
+				if(selection.CalculateFitness(byte)<mincost){
+					mincost = selection.CalculateFitness(byte);
+					minByte = byte;
+					minindex = index;
+				}
+			}
+			nextGeneration.erase(nextGeneration.begin() + minindex);
+		}
+		
+	//	nextGeneration.erase(nextGeneration.begin(), nextGeneration.begin() + excludeSize);
 		//Возьмем случайно некоторые элементы из объединения мутантов и потомков
 		vector<ByteVector> reproducts;
 		reproducts.insert(reproducts.end(), descendants.begin(), descendants.end());

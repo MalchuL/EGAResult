@@ -10,7 +10,7 @@ public:
 	OnePointCrossover() {
 	}
 	ByteVector Crossover(ByteVector firstVector, ByteVector secondVector) {
-		int point = rand() % secondVector.getLen();
+		int point = secondVector.getLen()/4 + (rand() % (3*secondVector.getLen() / 4 - secondVector.getLen() / 4 + 1));
 		ByteVector result(secondVector.getLen());
 		for (size_t i = 0; i < point; i++)
 		{

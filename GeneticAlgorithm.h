@@ -22,7 +22,9 @@ class GeneticAlgorithm
 
 	vector<ByteVector> GenerateStartPopulation(ObjectVector objectsVector,weightvalue maxWeight) {
 		vector<ByteVector> startPopulation;
-		RandomObjectsSelector<AbstractStartPopulationGenerator> generator = RandomObjectsSelector<AbstractStartPopulationGenerator>({new DancigStartPopulationGenerator(maxWeight),new RandomStartPopulationGenerator(maxWeight,rand()) });
+		RandomObjectsSelector<AbstractStartPopulationGenerator> generator = RandomObjectsSelector<AbstractStartPopulationGenerator>({
+			//new DancigStartPopulationGenerator(maxWeight),
+			new RandomStartPopulationGenerator(maxWeight,rand()) });
 		for (size_t i = 0; i < populationSize; i++)
 		{
 			startPopulation.push_back(generator.getRandomObject().Generate(objectsVector));
@@ -77,8 +79,12 @@ class GeneticAlgorithm
 		new	InversionMutation(byteLen / 2 + 1),
 			new	ByteInversionMutation(byteLen /	1.5 + 1) });
 		vector<ByteVector> mutants;
+		clog << "mutants" << endl;
 		for(ByteVector vect:vectors){
-			mutants.push_back(mutantGenerator.getRandomObject().Mutate(vect));
+			clog << "n:" << vect << endl;
+			ByteVector mutant = mutantGenerator.getRandomObject().Mutate(vect);
+			mutants.push_back(mutant);
+			clog << "m:" << mutant << endl;
 		}
 		return mutants;
 	}
@@ -108,7 +114,7 @@ public:
 		childsSize = populationSize * 3;
 		mutantSize = childsSize*3;
 		nextGenerationOverlapCoef = 1.f / 3.f;
-		cForSelection = populationSize;
+		cForSelection = 0;
 	}
 	ByteVector find(vector<BackpackObject> objectsVector, weightvalue maxWeight) {
 		ObjectVector convertedVector;
