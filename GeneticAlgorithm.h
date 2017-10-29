@@ -129,6 +129,7 @@ public:
 		for (size_t i = 0; i < objectsVector.size(); i++)
 		{
 			convertedVector.push_back(IndexedBackpackObject(i, objectsVector[i]));
+			clog << i << " weight:" << objectsVector[i].weight << " cost:" << objectsVector[i].cost << endl;
 		}
 		return find(convertedVector, maxWeight);
 	}
@@ -144,6 +145,7 @@ public:
 
 		//—генерируем начальную попул€цию
 		vector<ByteVector> currentPopulation = GenerateStartPopulation(objectsVector, maxWeight);
+		clog << "Start population" << endl;
 		printVectorList(currentPopulation, funcFitness);
 		clog << endl;
 		for (size_t i = 0; i < steps; i++)
@@ -173,7 +175,7 @@ public:
 			clog << "after Mutants" << endl;
 			printVectorList(mutants, funcFitness);*/
 			currentPopulation = nextGenerationGenerator.GenerateNextGeneration(currentPopulation, childs, mutants);
-			clog << "Current Population" << endl;
+			clog << "Current population for "<<i+1<<" generation" << endl;
 			printVectorList(currentPopulation, funcFitness);
 			clog << endl;
 		}

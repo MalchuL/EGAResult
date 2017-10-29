@@ -39,8 +39,8 @@ public:
 	vector<ByteVector> GenerateNextGeneration(const vector<ByteVector>& currentGeneration,const vector<ByteVector>& descendants,const vector<ByteVector>& mutants) {
 		//Наш селектор
 		RandomObjectsSelector<AbstractSelection> selectionSelector = RandomObjectsSelector<AbstractSelection>({
-			new TournirSelection(func, currentGeneration.size() / 6 + 1),
-			new ProportionalSelection(func,0)
+			new TournirSelection(func, currentGeneration.size() / 4 + 1),
+			new ProportionalSelection(func,2)
 		});
 
 		vector<ByteVector> nextGeneration = currentGeneration;

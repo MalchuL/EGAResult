@@ -19,7 +19,7 @@ int main()
 	{
 		objects.push_back(BackpackObject(rand()%29+1, rand()%20+1));
 	}
-	GeneticAlgorithm alg = GeneticAlgorithm(100,20);
+	GeneticAlgorithm alg = GeneticAlgorithm(100,30);
 	cout << alg.find(objects, maxW);
 	getchar();
     return 0;

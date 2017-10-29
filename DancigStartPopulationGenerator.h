@@ -35,7 +35,7 @@ public:
 			{
 				//Иначе мб уже с минимальными вессами, но с самой маленькой стоимостью
 			}
-			clog << objectVector.at(i).index << " " << objectVector.at(i).object.weight << " " << objectVector.at(i).object.cost << " " << objectVector.at(i).object.cost / objectVector.at(i).object.weight << " curW:" << currentWeight << endl;
+		//	clog << objectVector.at(i).index << " " << objectVector.at(i).object.weight << " " << objectVector.at(i).object.cost << " " << objectVector.at(i).object.cost / objectVector.at(i).object.weight << " curW:" << currentWeight << endl;
 
 		}
 
