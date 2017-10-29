@@ -3,7 +3,7 @@
 class AbstractCrossover
 {
 public:
-	AbstractCrossover();
+	AbstractCrossover() {}
 	virtual ByteVector Crossover(ByteVector firstParent, ByteVector secondParent) = 0;
 	~AbstractCrossover();
 };

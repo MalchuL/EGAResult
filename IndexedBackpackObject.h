@@ -1,5 +1,9 @@
 #pragma once
 #include "BackpackObject.h"
+#include <vector>
+using namespace std;
+
+
 class IndexedBackpackObject
 {
 public:
@@ -19,4 +23,9 @@ public:
 
 	~IndexedBackpackObject();
 };
+
+typedef vector<IndexedBackpackObject> ObjectVector;
+
+
+
 

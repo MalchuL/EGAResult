@@ -3,13 +3,14 @@
 class OnePointCrossover :
 	public AbstractCrossover
 {
-	int point;
+	//int point;
 public:
-	int getPoint() { return point; }
-	void setPoint(int point) { this->point = point; }
-	OnePointCrossover(int point) :point(point) {
+	//int getPoint() { return point; }
+	//void setPoint(int point) { this->point = point; }
+	OnePointCrossover() {
 	}
 	ByteVector Crossover(ByteVector firstVector, ByteVector secondVector) {
+		int point = rand() % secondVector.getLen();
 		ByteVector result(secondVector.getLen());
 		for (size_t i = 0; i < point; i++)
 		{

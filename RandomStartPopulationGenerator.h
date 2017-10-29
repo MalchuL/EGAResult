@@ -23,7 +23,7 @@ public:
 				currentWeight += object.object.weight;
 				generatedVector.setByte(object.index, 1);
 			}
-			clog << object.index << " " << object.object.weight << " " << object.object.cost << " curW:" << currentWeight << endl;
+		//	clog << object.index << " " << object.object.weight << " " << object.object.cost << " curW:" << currentWeight << endl;
 		}
 		return generatedVector;
 	}

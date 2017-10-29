@@ -30,6 +30,7 @@ public:
 				return objects.at(i);
 			}
 		}
+		return objects.at(objects.size() - 1);
 	}
 	~Roulette() {}
 };

@@ -3,12 +3,12 @@
 class TwoPointCrossover :
 	public AbstractCrossover
 {
-	int firstPoint;
-	int secondPoint;
+	int dispersion;
+	//int secondPoint;
 public:
-	int getFirstPoint() { return firstPoint; }
-	int getSecondPoint() { return secondPoint; }
-	void setFirstPoint(int firstPoint) {
+	//int getFirstPoint() { return firstPoint; }
+	//int getSecondPoint() { return secondPoint; }
+	/*void setFirstPoint(int firstPoint) {
 		if (firstPoint < getSecondPoint())
 		{ 
 			this->firstPoint = firstPoint;
@@ -27,34 +27,29 @@ public:
 		{
 			throw 1;
 		}
-	}
+	}*/
 
 	ByteVector Crossover(ByteVector firstVector, ByteVector secondVector) {
 		ByteVector result(secondVector.getLen());
-		for (size_t i = 0; i < getFirstPoint(); i++)
+		int firstPoint = rand() % (secondVector.getLen() - dispersion);
+		int secondPoint = firstPoint + dispersion;
+		for (size_t i = 0; i < firstPoint; i++)
 		{
 			result.setByte(i, firstVector.getByte(i));
 		}
-		for (size_t i = getFirstPoint(); i < getSecondPoint(); i++)
+		for (size_t i = firstPoint; i < secondPoint; i++)
 		{
 			result.setByte(i, secondVector.getByte(i));
 		}
-		for (size_t i = getSecondPoint(); i < secondVector.getLen(); i++)
+		for (size_t i = secondPoint; i < secondVector.getLen(); i++)
 		{
 			result.setByte(i, firstVector.getByte(i));
 		}
 		return result;
 	}
 
-	TwoPointCrossover(int firstPoint, int secondPoint) {
-		if (firstPoint < secondPoint) {
-			this->firstPoint = firstPoint;
-			this->secondPoint = secondPoint;
-		}
-		else
-		{
-			throw 1;
-		}
+	TwoPointCrossover(int dispersion):dispersion(dispersion) {
+
 	}
 	~TwoPointCrossover();
 };

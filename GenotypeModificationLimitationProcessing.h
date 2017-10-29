@@ -1,8 +1,8 @@
 #pragma once
 #include "IndexedBackpackObject.h"
-#include "AbstractStartPopulationGenerator.h"
 #include <vector>
 #include <algorithm>
+#include "ByteVector.h"
 
 using namespace std;
 class GenotypeModificationLimitationProcessing
@@ -22,7 +22,7 @@ public:
 				weightedObjects.push_back(object);
 			}
 		}
-		while (currentWeight>maxWeight||weightedObjects.size()>0)
+		while (currentWeight>maxWeight&&weightedObjects.size()>0)
 		{
 			int index = rand() % weightedObjects.size();
 			IndexedBackpackObject object = weightedObjects.at(index);
