@@ -15,7 +15,7 @@ protected:
 
 		return byteVectorList.at(rand() % byteVectorList.size());
 	}
-	virtual float Probability(ByteVector firstParent, ByteVector secondParent) = 0;
+	virtual float SecondParentProbability(ByteVector firstParent, ByteVector secondParent) = 0;
 
 	ByteVector SelectPairToFirstVector(ByteVector firstParent, const vector<ByteVector>& potencialParents) {
 		vector<ByteVector> parents;
@@ -28,7 +28,7 @@ protected:
 			if (length > 0) {
 	//			clog << "1" << endl;
 				parents.push_back(vector);
-				probabilities.push_back(Probability(firstParent, vector));
+				probabilities.push_back(SecondParentProbability(firstParent, vector));
 			}
 		}
 		if (parents.size() == 0)throw 1;

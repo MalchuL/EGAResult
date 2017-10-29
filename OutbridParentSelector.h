@@ -6,7 +6,7 @@ class OutbridParentSelector :
 {
 private:
 
-	float Probability(ByteVector firstParent, ByteVector secondParent) {
+	float SecondParentProbability(ByteVector firstParent, ByteVector secondParent) {
 		int length = ByteVectorMath::HemmingLength(firstParent, secondParent);
 		return length / (float)firstParent.getLen();
 	}

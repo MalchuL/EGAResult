@@ -2,12 +2,14 @@
 #include "AbstractSelection.h"
 class TournirSelection:public AbstractSelection
 {
-	int tournirSize;
+	float tournirSizeCoef;
 public:
-	TournirSelection(function func,int tournirSize) :AbstractSelection(func), tournirSize(tournirSize){}
+	TournirSelection(function func,float tournirSizeCoef) :AbstractSelection(func), tournirSizeCoef(tournirSizeCoef){}
 	vector<ByteVector> getGoodChilds(vector<ByteVector> allChilds, int size) {
 		vector<ByteVector> goodChilds;
-
+		int tournirSize = allChilds.size()*tournirSizeCoef + 1;
+		//cout << tournirSize << endl;
+		if (tournirSize <= 0)throw 1;
 		for (size_t i = 0; i < size; i++)
 		{
 			random_shuffle(allChilds.begin(), allChilds.end());

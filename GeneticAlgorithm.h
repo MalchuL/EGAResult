@@ -37,11 +37,12 @@ class GeneticAlgorithm
 			clog << vect <<" weight:"<<funcFitness.calculateWeight(vect) <<" fitness:" << funcFitness.calculateFitness(vect) << endl;
 		}
 	}
-	vector<ByteVector> GenerateChilds(vector<ByteVector> parents){
+	vector<ByteVector> GenerateChilds(vector<ByteVector> parents, function func){
 		//Сгенерируем детей разными способами
 		RandomObjectsSelector<AbstractParentSelector> pairParentGenerator = RandomObjectsSelector<AbstractParentSelector>(
 		{new InbridingParentSelector(),
-		 new OutbridParentSelector()
+		 new OutbridParentSelector(),
+			new PossibleAssociableParentSelector(func)
 		});
 		//Применим кроссовер для получения потомков
 		vector<ByteVector> childs;
@@ -119,8 +120,8 @@ class GeneticAlgorithm
 	const int steps;
 public:
 	GeneticAlgorithm(int populationSize,int maxsteps):populationSize(populationSize),steps(maxsteps) {
-		childsSize = populationSize * 3;
-		mutantSize = 0.1*childsSize;
+		childsSize = populationSize * 15;
+		mutantSize = 0.25*childsSize;
 		nextGenerationOverlapCoef = 1.f / 3.f;
 		cForSelection = 2;
 	}
@@ -152,8 +153,17 @@ public:
 		{
 
 			if (!VectorIsUnique(currentPopulation))break;
-			vector<ByteVector> childs = GenerateChilds(currentPopulation);
-			vector<ByteVector> mutants = GenerateMutants(childs);
+			vector<ByteVector> childs = GenerateChilds(currentPopulation,funcFitness);
+			//Выберем потомков для мутирования
+			vector<ByteVector> childsForMutation;
+			for (size_t i = 0; i < mutantSize; i++)
+			{
+				int randomIndex = rand() % childs.size();
+				childsForMutation.push_back(childs.at(randomIndex));
+				childs.erase(childs.begin() + randomIndex);
+
+			}
+			vector<ByteVector> mutants = GenerateMutants(childsForMutation);
 			GenotypeModificationLimitationProcessing LimitationProcessor = GenotypeModificationLimitationProcessing(objectsVector, maxWeight);
 			//Преобразуем до допустимых
 		/*
