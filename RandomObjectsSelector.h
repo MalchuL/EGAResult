@@ -12,5 +12,11 @@ public:
 	RandomObjectsSelector(vector<T*> objects):objects(objects) {
 
 	}
+	~RandomObjectsSelector() {
+		for (size_t i = 0; i < objects.size(); i++)
+		{
+			delete objects[i];
+		}
+	}
 };
 
