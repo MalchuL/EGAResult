@@ -23,7 +23,7 @@ class GeneticAlgorithm
 	vector<ByteVector> GenerateStartPopulation(ObjectVector objectsVector,weightvalue maxWeight) {
 		vector<ByteVector> startPopulation;
 		RandomObjectsSelector<AbstractStartPopulationGenerator> generator = RandomObjectsSelector<AbstractStartPopulationGenerator>({
-			//new DancigStartPopulationGenerator(maxWeight),
+			new DancigStartPopulationGenerator(maxWeight),
 			new RandomStartPopulationGenerator(maxWeight,rand()) });
 		for (size_t i = 0; i < populationSize; i++)
 		{
