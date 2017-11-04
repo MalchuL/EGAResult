@@ -80,7 +80,8 @@ class GeneticAlgorithm
 		RandomObjectsSelector<AbstractMutation> mutantGenerator = RandomObjectsSelector<AbstractMutation>(
 		{new GeneticPointMutation(),
 		new	InversionMutation(byteLen / 2 + 1),
-			new	ByteInversionMutation(byteLen /	1.5 + 1) });
+			new	ByteInversionMutation(byteLen /	1.5 + 1) 
+		});
 		vector<ByteVector> mutants;
 		//clog << "mutants" << endl;
 		for(ByteVector vect:vectors){
@@ -149,10 +150,16 @@ public:
 		clog << "Start population" << endl;
 		printVectorList(currentPopulation, funcFitness);
 		clog << endl;
+		cout << "Generations" << endl;
 		for (size_t i = 0; i < steps; i++)
 		{
-
-			if (!VectorIsUnique(currentPopulation))break;
+			{
+				ByteVector max = findMaxInList(currentPopulation, funcFitness);
+				cout << i << " generation, max element: " << max << " cost: " << funcFitness.calculateFitness(max) << " weight: " << funcFitness.calculateWeight(max) << endl;
+			}
+			if (!VectorIsUnique(currentPopulation)) { 
+				cout << "Population is not unique" << endl;
+				break; }
 			vector<ByteVector> childs = GenerateChilds(currentPopulation,funcFitness);
 			//Выберем потомков для мутирования
 			vector<ByteVector> childsForMutation;
@@ -186,11 +193,15 @@ public:
 			printVectorList(mutants, funcFitness);*/
 			currentPopulation = nextGenerationGenerator.GenerateNextGeneration(currentPopulation, childs, mutants);
 			clog << "Current population for "<<i+1<<" generation" << endl;
+
 			printVectorList(currentPopulation, funcFitness);
 			clog << endl;
 		}
 		
-
+		{
+			ByteVector max = findMaxInList(currentPopulation, funcFitness);
+			cout <<"Max element: " << max << " cost: " << funcFitness.calculateFitness(max) << " weight: " << funcFitness.calculateWeight(max) << endl;
+		}
 		return findMaxInList(currentPopulation, funcFitness);
 		
 	}

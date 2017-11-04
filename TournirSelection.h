@@ -8,6 +8,7 @@ public:
 	vector<ByteVector> getGoodChilds(vector<ByteVector> allChilds, int size) {
 		vector<ByteVector> goodChilds;
 		int tournirSize = allChilds.size()*tournirSizeCoef + 1;
+		if (tournirSize > allChilds.size())tournirSize = allChilds.size();
 		//cout << tournirSize << endl;
 		if (tournirSize <= 0)throw 1;
 		for (size_t i = 0; i < size; i++)
