@@ -1,0 +1,206 @@
+1
+50
+2
+50
+3
+50
+variant:1 Iter:2 cost: 998
+variant:2 Iter:12 cost: 987
+variant:3 Iter:3 cost: 998
+-------------------
+variant:1 Iter:7 cost: 1031
+variant:2 Iter:11 cost: 1030
+variant:3 Iter:7 cost: 1031
+-------------------
+variant:1 Iter:6 cost: 968
+variant:2 Iter:9 cost: 958
+variant:3 Iter:3 cost: 964
+-------------------
+variant:1 Iter:2 cost: 1009
+variant:2 Iter:17 cost: 1012
+variant:3 Iter:1 cost: 1009
+-------------------
+variant:1 Iter:2 cost: 930
+variant:2 Iter:19 cost: 928
+variant:3 Iter:4 cost: 930
+-------------------
+variant:1 Iter:0 cost: 1047
+variant:2 Iter:11 cost: 1048
+variant:3 Iter:5 cost: 1048
+-------------------
+variant:1 Iter:0 cost: 958
+variant:2 Iter:29 cost: 960
+variant:3 Iter:7 cost: 960
+-------------------
+variant:1 Iter:0 cost: 920
+variant:2 Iter:17 cost: 915
+variant:3 Iter:5 cost: 920
+-------------------
+variant:1 Iter:0 cost: 906
+variant:2 Iter:13 cost: 899
+variant:3 Iter:3 cost: 906
+-------------------
+variant:1 Iter:0 cost: 868
+variant:2 Iter:14 cost: 866
+variant:3 Iter:4 cost: 871
+-------------------
+variant:1 Iter:5 cost: 995
+variant:2 Iter:16 cost: 992
+variant:3 Iter:10 cost: 995
+-------------------
+variant:1 Iter:9 cost: 970
+variant:2 Iter:7 cost: 969
+variant:3 Iter:5 cost: 972
+-------------------
+variant:1 Iter:1 cost: 1009
+variant:2 Iter:30 cost: 1012
+variant:3 Iter:6 cost: 1012
+-------------------
+variant:1 Iter:2 cost: 907
+variant:2 Iter:16 cost: 913
+variant:3 Iter:7 cost: 916
+-------------------
+variant:1 Iter:0 cost: 900
+variant:2 Iter:16 cost: 889
+variant:3 Iter:5 cost: 900
+-------------------
+variant:1 Iter:0 cost: 949
+variant:2 Iter:18 cost: 954
+variant:3 Iter:30 cost: 954
+-------------------
+variant:1 Iter:0 cost: 1003
+variant:2 Iter:12 cost: 1006
+variant:3 Iter:6 cost: 1006
+-------------------
+variant:1 Iter:0 cost: 969
+variant:2 Iter:10 cost: 970
+variant:3 Iter:3 cost: 969
+-------------------
+variant:1 Iter:0 cost: 1051
+variant:2 Iter:4 cost: 1053
+variant:3 Iter:5 cost: 1053
+-------------------
+variant:1 Iter:0 cost: 1069
+variant:2 Iter:5 cost: 1069
+variant:3 Iter:9 cost: 1069
+-------------------
+variant:1 Iter:1 cost: 1006
+variant:2 Iter:30 cost: 1009
+variant:3 Iter:8 cost: 1011
+-------------------
+variant:1 Iter:1 cost: 930
+variant:2 Iter:25 cost: 936
+variant:3 Iter:30 cost: 935
+-------------------
+variant:1 Iter:1 cost: 1020
+variant:2 Iter:23 cost: 1027
+variant:3 Iter:2 cost: 1020
+-------------------
+variant:1 Iter:0 cost: 905
+variant:2 Iter:18 cost: 904
+variant:3 Iter:6 cost: 905
+-------------------
+variant:1 Iter:0 cost: 1092
+variant:2 Iter:10 cost: 1095
+variant:3 Iter:7 cost: 1095
+-------------------
+variant:1 Iter:4 cost: 998
+variant:2 Iter:30 cost: 998
+variant:3 Iter:30 cost: 998
+-------------------
+variant:1 Iter:0 cost: 894
+variant:2 Iter:15 cost: 891
+variant:3 Iter:3 cost: 894
+-------------------
+variant:1 Iter:9 cost: 1011
+variant:2 Iter:27 cost: 1011
+variant:3 Iter:4 cost: 1009
+-------------------
+variant:1 Iter:6 cost: 909
+variant:2 Iter:11 cost: 906
+variant:3 Iter:3 cost: 909
+-------------------
+variant:1 Iter:0 cost: 949
+variant:2 Iter:30 cost: 950
+variant:3 Iter:4 cost: 949
+-------------------
+variant:1 Iter:0 cost: 931
+variant:2 Iter:7 cost: 919
+variant:3 Iter:2 cost: 931
+-------------------
+variant:1 Iter:2 cost: 1035
+variant:2 Iter:11 cost: 1041
+variant:3 Iter:1 cost: 1035
+-------------------
+variant:1 Iter:0 cost: 956
+variant:2 Iter:19 cost: 954
+variant:3 Iter:1 cost: 956
+-------------------
+variant:1 Iter:0 cost: 913
+variant:2 Iter:19 cost: 917
+variant:3 Iter:16 cost: 921
+-------------------
+variant:1 Iter:0 cost: 957
+variant:2 Iter:6 cost: 957
+variant:3 Iter:2 cost: 957
+-------------------
+variant:1 Iter:1 cost: 956
+variant:2 Iter:30 cost: 953
+variant:3 Iter:2 cost: 956
+-------------------
+variant:1 Iter:0 cost: 926
+variant:2 Iter:15 cost: 921
+variant:3 Iter:2 cost: 926
+-------------------
+variant:1 Iter:0 cost: 900
+variant:2 Iter:10 cost: 893
+variant:3 Iter:30 cost: 904
+-------------------
+variant:1 Iter:2 cost: 902
+variant:2 Iter:18 cost: 903
+variant:3 Iter:2 cost: 902
+-------------------
+variant:1 Iter:0 cost: 945
+variant:2 Iter:13 cost: 942
+variant:3 Iter:7 cost: 946
+-------------------
+variant:1 Iter:0 cost: 1026
+variant:2 Iter:9 cost: 1018
+variant:3 Iter:30 cost: 1026
+-------------------
+variant:1 Iter:2 cost: 811
+variant:2 Iter:10 cost: 811
+variant:3 Iter:6 cost: 811
+-------------------
+variant:1 Iter:2 cost: 903
+variant:2 Iter:13 cost: 901
+variant:3 Iter:7 cost: 906
+-------------------
+variant:1 Iter:0 cost: 922
+variant:2 Iter:14 cost: 924
+variant:3 Iter:6 cost: 923
+-------------------
+variant:1 Iter:1 cost: 992
+variant:2 Iter:11 cost: 988
+variant:3 Iter:1 cost: 992
+-------------------
+variant:1 Iter:0 cost: 911
+variant:2 Iter:9 cost: 897
+variant:3 Iter:4 cost: 911
+-------------------
+variant:1 Iter:0 cost: 1029
+variant:2 Iter:18 cost: 1036
+variant:3 Iter:9 cost: 1036
+-------------------
+variant:1 Iter:0 cost: 985
+variant:2 Iter:15 cost: 985
+variant:3 Iter:14 cost: 985
+-------------------
+variant:1 Iter:2 cost: 1022
+variant:2 Iter:11 cost: 1018
+variant:3 Iter:6 cost: 1022
+-------------------
+variant:1 Iter:7 cost: 939
+variant:2 Iter:30 cost: 937
+variant:3 Iter:4 cost: 939
+-------------------

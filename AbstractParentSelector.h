@@ -31,7 +31,7 @@ protected:
 				probabilities.push_back(SecondParentProbability(firstParent, vector));
 			}
 		}
-		if (parents.size() == 0)throw 1;
+		if (parents.size() == 0)return firstParent;
 		//clog << "f";
 		Roulette<ByteVector> roulette = Roulette<ByteVector>(parents, probabilities);
 		ByteVector secondParent = roulette.getRandomObject();

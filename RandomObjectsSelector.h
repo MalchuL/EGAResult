@@ -6,6 +6,9 @@ class RandomObjectsSelector
 {
 	vector<T*> objects;
 public:
+	vector<T*>& getObjects() {
+		return objects;
+	}
 	T& getRandomObject() {
 		return *(objects.at(rand() % objects.size()));
 	}

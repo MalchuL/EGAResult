@@ -22,9 +22,24 @@ class GeneticAlgorithm
 
 	vector<ByteVector> GenerateStartPopulation(ObjectVector objectsVector,weightvalue maxWeight) {
 		vector<ByteVector> startPopulation;
-		RandomObjectsSelector<AbstractStartPopulationGenerator> generator = RandomObjectsSelector<AbstractStartPopulationGenerator>({
-			new DancigStartPopulationGenerator(maxWeight),
-			new RandomStartPopulationGenerator(maxWeight,rand()) });
+		RandomObjectsSelector<AbstractStartPopulationGenerator> generator = RandomObjectsSelector<AbstractStartPopulationGenerator>({});
+		switch (variant)
+		{
+		case 1:
+			generator.getObjects().push_back(
+				new DancigStartPopulationGenerator(maxWeight));
+			break;
+		case 2:
+			generator.getObjects().push_back(
+				new RandomStartPopulationGenerator(maxWeight, rand()));
+			break;
+		default:
+			generator.getObjects().push_back(
+				new DancigStartPopulationGenerator(maxWeight));
+			generator.getObjects().push_back(
+				new RandomStartPopulationGenerator(maxWeight, rand()));
+			break;
+		}
 		for (size_t i = 0; i < populationSize; i++)
 		{
 			startPopulation.push_back(generator.getRandomObject().Generate(objectsVector));
@@ -119,8 +134,11 @@ class GeneticAlgorithm
 	float nextGenerationOverlapCoef;
 	float cForSelection;
 	const int steps;
+	int variant;
 public:
-	GeneticAlgorithm(int populationSize,int maxsteps):populationSize(populationSize),steps(maxsteps) {
+	GeneticAlgorithm(int populationSize,int maxsteps,int variant):populationSize(populationSize),steps(maxsteps),variant(variant) {
+		cout << variant << endl;
+		cout << populationSize << endl;
 		childsSize = populationSize * 15;
 		mutantSize = 0.25*childsSize;
 		nextGenerationOverlapCoef = 1.f / 3.f;
@@ -150,16 +168,15 @@ public:
 		clog << "Start population" << endl;
 		printVectorList(currentPopulation, funcFitness);
 		clog << endl;
-		cout << "Generations" << endl;
-		for (size_t i = 0; i < steps; i++)
+	//	cout << "Generations" << endl;
+		int iter = 0;
+		for (iter = 0; iter < steps; iter++)
 		{
 			{
 				ByteVector max = findMaxInList(currentPopulation, funcFitness);
-				cout << i << " generation, max element: " << max << " cost: " << funcFitness.calculateFitness(max) << " weight: " << funcFitness.calculateWeight(max) << endl;
+			//	cout << iter << " generation, max element: " << max << " cost: " << funcFitness.calculateFitness(max) << " weight: " << funcFitness.calculateWeight(max) << endl;
 			}
-			if (!VectorIsUnique(currentPopulation)) { 
-				cout << "Population is not unique" << endl;
-				break; }
+
 			vector<ByteVector> childs = GenerateChilds(currentPopulation,funcFitness);
 			//Выберем потомков для мутирования
 			vector<ByteVector> childsForMutation;
@@ -192,15 +209,19 @@ public:
 			clog << "after Mutants" << endl;
 			printVectorList(mutants, funcFitness);*/
 			currentPopulation = nextGenerationGenerator.GenerateNextGeneration(currentPopulation, childs, mutants);
-			clog << "Current population for "<<i+1<<" generation" << endl;
+			clog << "Current population for "<< iter +1<<" generation" << endl;
 
 			printVectorList(currentPopulation, funcFitness);
 			clog << endl;
+			if (!VectorIsUnique(currentPopulation)) {
+				//cout << "Population is not unique" << endl;
+				break;
+			}
 		}
 		
 		{
 			ByteVector max = findMaxInList(currentPopulation, funcFitness);
-			cout <<"Max element: " << max << " cost: " << funcFitness.calculateFitness(max) << " weight: " << funcFitness.calculateWeight(max) << endl;
+			cout<<"variant:"<< variant<<" Iter:"<< iter <<" cost: " << funcFitness.calculateFitness(max) << endl;
 		}
 		return findMaxInList(currentPopulation, funcFitness);
 		
